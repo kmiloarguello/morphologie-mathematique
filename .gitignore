@@ -1,0 +1,14 @@
+Refs/
+*.exe
+*.pdf
+*.docx
+*.doc
+*.user
+*/Report
+*/Results
+*.zip
+.vscode/
+.ipynb_checkpoints/
+*/data
+*/__MACOSX/
+.DS_Store
