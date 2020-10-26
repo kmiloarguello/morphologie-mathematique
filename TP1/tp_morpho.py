@@ -151,11 +151,11 @@ def couleurs_alea(im):
 
 # Images binaire
 im1=skio.imread('Images/cellbin.bmp')
-#im=skio.imread('Images/bat200.bmp')
-#im=skio.imread('Images/cafe.bmp')
-#im=skio.imread('Images/retina2.gif')
-#im=skio.imread('Images/bulles.bmp')
-#im=skio.imread('Images/laiton.bmp')
+#im1=skio.imread('Images/bat200.bmp')
+#im1=skio.imread('Images/cafe.bmp')
+#im1=skio.imread('Images/retina2.gif')
+#im1=skio.imread('Images/bulles.bmp')
+#im1=skio.imread('Images/laiton.bmp')
 
 # Images à niveaux de gris
 #im=skio.imread('Images/cailloux1.png')
@@ -190,25 +190,25 @@ plt.imshow(_close,cmap="gray")
 #%% CA - tp
 
 # EX1 - 3
-#_im = skio.imread('Images/bat200.bmp')
+_im = skio.imread('Images/bat200.bmp')
 #plt.imshow(_im,cmap="gray")
-#_se3x3 =strel('square',3)
-#_se5x5 =strel('square',5)
-#_se7x7 =strel('square',7)
+_se3x3 =strel('square',3)
+_se5x5 =strel('square',5)
+_se7x7 =strel('square',7)
 
 #Avec dilatation
-#_dil1 = morpho.opening(_im,_se3x3)
-#plt.imshow(_dil1,cmap="gray")
-#_dil2 = morpho.opening(_dil1,_se5x5)
-#plt.imshow(_dil2,cmap="gray",vmin=0, vmax=255)
+_dil1 = morpho.opening(_im,_se3x3)
+plt.imshow(_dil1,cmap="gray")
+_dil2 = morpho.opening(_dil1,_se5x5)
+plt.imshow(_dil2,cmap="gray",vmin=0, vmax=255)
 
 # Avec ouverture
-#_ouvert1 = morpho.opening(_im,_se3x3)
-#plt.imshow(_ouvert1,cmap="gray")
-#_ouvert2 = morpho.opening(_ouvert1,_se5x5)
-#plt.imshow(_ouvert2,cmap="gray",vmin=0, vmax=255)
-#_ouvert3 = morpho.opening(_ouvert2,_se5x5)
-#plt.imshow(_ouvert3,cmap="gray",vmin=0, vmax=255)
+_ouvert1 = morpho.opening(_im,_se3x3)
+plt.imshow(_ouvert1,cmap="gray")
+_ouvert2 = morpho.opening(_ouvert1,_se5x5)
+plt.imshow(_ouvert2,cmap="gray",vmin=0, vmax=255)
+_ouvert3 = morpho.opening(_ouvert2,_se5x5)
+plt.imshow(_ouvert3,cmap="gray",vmin=0, vmax=255)
 
 
 #%% Chapeau haut-de-forme
