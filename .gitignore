@@ -5,6 +5,7 @@ Refs/
 *.doc
 *.user
 */Report
+*/Rapport
 */Results
 *.zip
 .vscode/

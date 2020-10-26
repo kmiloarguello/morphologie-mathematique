@@ -10,7 +10,6 @@ Modified Oct 2020
 
 #%% SECTION 1 inclusion de packages externes 
 
-
 import numpy as np
 import platform
 import tempfile
@@ -151,90 +150,133 @@ def couleurs_alea(im):
 #%% SECTION 3 exemples de commandes pour effectuer ce qui est demande pendant le TP
 
 # Images binaire
-im=skio.imread('Images/cellbin.bmp')
-#im=skio.imread('cafe.bmp')
+im1=skio.imread('Images/cellbin.bmp')
+#im=skio.imread('Images/bat200.bmp')
+#im=skio.imread('Images/cafe.bmp')
+#im=skio.imread('Images/retina2.gif')
+#im=skio.imread('Images/bulles.bmp')
+#im=skio.imread('Images/laiton.bmp')
 
 # Images à niveaux de gris
-#im=skio.imread('retina2.gif')
-#im=skio.imread('bat200.bmp')
-#im=skio.imread('bulles.bmp')
-#im=skio.imread('cailloux.png')
-#im=skio.imread('cailloux2.png')
-#im=skio.imread('laiton.bmp')
+#im=skio.imread('Images/cailloux1.png')
+#im=skio.imread('Images/cailloux2.png')
 
-plt.imshow(im,cmap="gray")
+
+## np.max (...)
+
+#plt.imshow(im,cmap="gray")
+
+#
 # viewimage(im) - Utilisable à la place de plt.imshow si Gimp est installé.
 
-se=strel('disk',4)
+se1=strel('disk',2)
 
 # dilatation
-dil=morpho.dilation(im,se)
+dil=morpho.dilation(im1,se1)
 plt.imshow(dil,cmap="gray")
 
 # erosion
-ero=morpho.erosion(im,se)
+ero=morpho.erosion(im1,se1)
 plt.imshow(ero,cmap="gray")
 
 #ouverture
-open=morpho.opening(im,se)
-plt.imshow(open,cmap="gray")
+_open=morpho.opening(im1,se1)
+plt.imshow(_open,cmap="gray")
 
 #fermeture
-close=morpho.closing(im,se)
-plt.imshow(close,cmap="gray")
-                      
+_close=morpho.closing(im1,se1)
+plt.imshow(_close,cmap="gray")
+
+#%% CA - tp
+
+# EX1 - 3
+#_im = skio.imread('Images/bat200.bmp')
+#plt.imshow(_im,cmap="gray")
+#_se3x3 =strel('square',3)
+#_se5x5 =strel('square',5)
+#_se7x7 =strel('square',7)
+
+#Avec dilatation
+#_dil1 = morpho.opening(_im,_se3x3)
+#plt.imshow(_dil1,cmap="gray")
+#_dil2 = morpho.opening(_dil1,_se5x5)
+#plt.imshow(_dil2,cmap="gray",vmin=0, vmax=255)
+
+# Avec ouverture
+#_ouvert1 = morpho.opening(_im,_se3x3)
+#plt.imshow(_ouvert1,cmap="gray")
+#_ouvert2 = morpho.opening(_ouvert1,_se5x5)
+#plt.imshow(_ouvert2,cmap="gray",vmin=0, vmax=255)
+#_ouvert3 = morpho.opening(_ouvert2,_se5x5)
+#plt.imshow(_ouvert3,cmap="gray",vmin=0, vmax=255)
+
+
 #%% Chapeau haut-de-forme
-im=skio.imread('Images/retina2.gif')
-t=10
-se=strel('line',t,-45)
-ch=im-morpho.opening(im,se)
-plt.imshow(ch,cmap="gray")
+#im=skio.imread('Images/retina2.gif')
+#plt.imshow(im,cmap="gray")
+#t=2
+#se=strel('disk',t,-45)
+#ch=im-morpho.opening(im,se)
+#plt.imshow(ch,cmap="gray")
+
+#%% Chapeau haut-de-forme pour deuxieme exemple
+#im3=skio.imread('Images/laiton.bmp')
+#plt.imshow(im3,cmap="gray")
+#t=10
+#se3=strel('square',t,-45)
+#ch3=morpho.closing(im3,se3) - im3
+#plt.imshow(ch3,cmap="gray")
 
 #%%  Filtre alterne sequentiel
-im=skio.imread('Images/retina2.gif')
-imt=im.copy()
-N=3
-for k in range(N):
-    se=strel('disk',k)
-    imt=morpho.closing(morpho.opening(imt,se),se)
-plt.imshow(imt,cmap="gray")
 
+#im=skio.imread('Images/bat200.bmp')
+#imt=im.copy()
+#N=3
+#for k in range(N):
+#    se=strel('disk',k)
+#    imt=morpho.closing(morpho.opening(imt,se),se)
+#plt.imshow(imt,cmap="gray")
 
 
 #%% ligne de partage des eaux
-im=skio.imread('Images/bat200.bmp')
-se=morpho.selem.disk(1)
+#im=skio.imread('Images/laiton.bmp')
+#se=morpho.selem.disk(2)
 
-grad=morpho.dilation(im,se)-morpho.erosion(im,se)
-grad=np.int32(grad>40)*grad
-plt.imshow(grad,cmap="gray")
+#grad=morpho.dilation(im,se) - morpho.erosion(im,se)
+#grad=np.int32(grad > 40) * grad
+#plt.imshow(grad,cmap="gray")
 
-local_mini = skf.peak_local_max(255-grad, #il n'y a pas de fonction local_min...
-                            indices=False)
-markers = ndi.label(local_mini)[0]
-plt.imshow(local_mini,cmap="gray")
+#local_mini = skf.peak_local_max(255-grad, #il n'y a pas de fonction local_min...
+#                            indices=False)
+#markers = ndi.label(local_mini)[0]
+#plt.imshow(local_mini,cmap="gray")
 
-labels = morpho.watershed(grad, markers,watershed_line=True)
-plt.imshow(couleurs_alea(labels))
+#%
+#local_mini2 = morpho.opening(local_mini,se)
+#plt.imshow(local_mini2,cmap="gray")
+
+#%
+#labels = morpho.watershed(grad, markers,watershed_line=True)
+#plt.imshow(couleurs_alea(labels))
 # viewimage_color(couleurs_alea(labels)) - Utilisable si gimp est installé
 
 # visualiation du resultat
-segm=labels.copy()
-for i in range(segm.shape[0]):
-    for j in range(segm.shape[1]):
-        if segm[i,j] == 0: 
-            segm[i,j]=255
-        else:
-            segm[i,j]=0
+#segm=labels.copy()
+#for i in range(segm.shape[0]):
+#    for j in range(segm.shape[1]):
+#        if segm[i,j] == 0: 
+#            segm[i,j]=255
+#        else:
+#            segm[i,j]=0
 #superposition des contours de la segmentation a l'image initiale
-contourSup=np.maximum(segm,im)
-plt.imshow(contourSup,cmap="gray") 
+#contourSup=np.maximum(segm,im)
+#plt.imshow(contourSup,cmap="gray") 
 
 
 #%% reconstruction
-im=skio.imread('Images/retina2.gif')
-se4=strel('disk',4)
-open4=morpho.opening(im,se4)
-reco=morpho.reconstruction(open4,im)
-plt.imshow(reco,cmap="gray")
-#%% FIN  exemples TP MORPHO
+#im=skio.imread('Images/retina2.gif')
+#se4=strel('disk',11)
+#open4=morpho.opening(im,se4)
+#reco=morpho.reconstruction(open4,im)
+#plt.imshow(reco,cmap="gray")
+#%% FIN exemples TP MORPHO
