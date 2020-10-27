@@ -229,13 +229,13 @@ plt.imshow(_ouvert3,cmap="gray",vmin=0, vmax=255)
 
 #%%  Filtre alterne sequentiel
 
-#im=skio.imread('Images/bat200.bmp')
-#imt=im.copy()
-#N=3
-#for k in range(N):
-#    se=strel('disk',k)
-#    imt=morpho.closing(morpho.opening(imt,se),se)
-#plt.imshow(imt,cmap="gray")
+_im2=skio.imread('Images/bat200.bmp')
+_imt=im.copy()
+N=3
+for k in range(N):
+    _se2=strel('disk',k)
+    imt=morpho.closing(morpho.opening(_imt,_se2),_se2)
+plt.imshow(_imt,cmap="gray")
 
 
 #%% ligne de partage des eaux
