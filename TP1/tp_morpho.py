@@ -274,9 +274,9 @@ plt.imshow(_imt,cmap="gray")
 
 
 #%% reconstruction
-#im=skio.imread('Images/retina2.gif')
-#se4=strel('disk',11)
-#open4=morpho.opening(im,se4)
-#reco=morpho.reconstruction(open4,im)
-#plt.imshow(reco,cmap="gray")
+_im3=skio.imread('Images/retina2.gif')
+_se3=strel('diamond',10)
+_open3=morpho.opening(_im3,_se3)
+_reco3=morpho.reconstruction(_open3,_im3)
+plt.imshow(_reco3,cmap="gray")
 #%% FIN exemples TP MORPHO
